@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+	<div class="col-md-10 col-md-offset-1">
+  <form class="form-horizontal" id="validateForm" method="post">
+		<div class="row">
+			<div class="col-xs-offset-4 col-xs-4">
+				<div class="form-group">
+					<label class="control-label">SURNAME:</label>
+					<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					<input  name="lname" placeholder="Surname" class="form-control"  type="text"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">OTHERNAME:</label>
+					<input  name="oname" placeholder="Othername" class="form-control"  type="text"/>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">ENROLLEE CODE:</label>
+					<input  name="enrcode" id="enrcode" placeholder="Enrollee Code" class="form-control" type="text"/>
+					<span name="enrAvail" id="enrAvail"></span>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">MOBILE NUMBER:</label>
+					<input  name="phone" placeholder="Phone Number" class="form-control"  type="text"/>
+				</div>
+				  
+				<div class="form-group">
+					<label class="control-label">COMPANY NAME:</label>
+					<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+					<input  name="c_name" placeholder="Company Name" class="form-control"  type="text" id="c_name"></div>
+				  </div>
+				  
+				<div class="form-group">
+					<label class="control-label">HOSPITAL NAME:</label>
+					<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<input  name="p_name" placeholder="Hospital Name" class="form-control"  type="text" id="p_name"></div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">HOSPITAL CODE:</label>
+					<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<input  name="p_code" placeholder="Hospital Code" class="form-control"  type="text"></div>
+				</div>
+
+				<div class="form-group">
+					<label>PLAN TYPE:</label>
+					<div class="radio">
+						<label><input type="radio" name="pl_type" value="INDIVIDUAL" /> Individual</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="pl_type" value="BLUE" /> Blue</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="pl_type" value="ROYAL" /> Royal</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="pl_type" value="PLATINUM" /> Platinum</label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="pl_type" value="AGED" /> Aged</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">MONTH AND YEAR TO BEGIN:</label>
+					<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<input class="form-control" id="c_d_activated" type="date" name="c_d_activated"/></div>
+				</div>
+			 
+				<div class="form-group">
+					<label class="control-label">MONTH AND YEAR TO EXPIRE: </label>
+					<div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+					<input class="form-control" id="d_expire" type="date" name="d_expire"/></div>
+				</div>
+																	 
+				<div class="form-group">
+					<button type="submit" name="submit" id="submit" class="btn btn-success">Submit <span class="glyphicon glyphicon-send"></span></button>
+				  </div>
+			</div>
+			</div>
+		</div>
+		 
+		</form>
+	<div>
+ 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.css"></script>    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 
+ <script type="text/javascript">
+	$(document).ready(function(){
+		var validator = $('#validateForm').bootstrapValidator({
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				lname: {
+					validators: {
+						notEmpty: {
+							message: 'Please Enter your Surname'
+						},
+						stringCase:{
+							'case': 'upper',
+								message: 'The Surname must be in Uppercase',
+						},
+						stringLength: {
+							min: 3,
+							message: 'Surname with minimum of 3 letters'
+						}
+					}
+				},
+				oname: {
+					validators: {
+						notEmpty: {
+							message: 'Please Enter your Othername'
+						},
+						stringCase:{
+							'case': 'upper',
+								message: 'The Othername must be in Uppercase',
+						},
+						stringLength: {
+							min: 5,
+							message: 'Othername with minimum of 5 letters'
+						}
+					}
+				},
+				phone: {
+					validators: {
+						notEmpty: {
+							message: 'Please Enter Phone Number'
+						},
+						regexp: {
+							regexp: /^[0-9]{11,11}$/,
+								message: 'The Phone Number must be 11 Numbers'
+						}
+					}
+				},
+				enrcode: {
+					validators: {
+						notEmpty: {
+							message: 'Please Enter Enrollee Code'
+						},
+						regexp: {
+							regexp: /^[A-Z/0-9]{10,14}$/,
+								message: 'The  Enrollee Code must be in Uppercase and between 10 - 14 Characters'
+						}
+					}
+				},
+				c_name: {
+					validators: {
+						notEmpty: {
+							message: 'Please Enter Company Name'
+						},
+						stringCase:{
+							'case': 'upper',
+								message: 'The Company Name must be in Uppercase',
+						}
+					}
+				},
+				p_name: {
+					validators: {
+						notEmpty: {
+							message: 'Please Enter Hospital Name'
+						},
+						stringCase:{
+							'case': 'upper',
+								message: 'The Company Name must be in Uppercase',
+						}
+					}
+				},
+				p_code: {
+					validators: {
+						notEmpty: {
+							message: 'Please Enter Hospital Code'
+						},
+						regexp: {
+							regexp: /^[A-Z/0-9]{7,9}$/,
+								message: 'The  Hospital Code must be in Uppercase and between 7 - 9 Characters'
+						}
+					}
+				},
+				pl_type: {
+					validators: {
+						notEmpty: {
+							message: 'Please Select Plan Type'
+						}
+					}
+				},
+				c_d_activated: {
+					validators: {
+						notEmpty: {
+							message: 'Please Enter Month and Year to Begin'
+						}
+					}
+				},
+				d_expire: {
+					validators: {
+						notEmpty: {
+							message: 'Please Enter Month and Year to Expire'
+						}
+					}
+				},
+			}
+    	});
+$('#c_code').blur(function(){
+			var c_name = $('#c_name').val();
+			var c_code = $('#c_code').val();
+			if(c_name != ''){
+				$.ajax({
+					url:'index.php',
+					method:'POST',
+					data:{c_name:c_name},
+					success:function(data){
+						var res = data.split('/');
+						var genCode = (res[2]);
+						var b = parseInt(genCode);
+						var f = '/A'
+						var d = b+1;
+						var e = c_code+d+f;
+						$('#enrcode').html(e);
+					}
+				});
+			}
+		});
+
+
+		$('#enrcode').blur(function(){
+			var enrcode = $(this).val();
+			if(enrcode != ''){
+				$.ajax({
+					url:'index.php',
+					method:'POST',
+					data:{enrcode:enrcode},
+					success:function(response){
+						var resData = parseInt(response);
+						if(resData != 0){
+							$('#enrAvail').html('<span class="text-danger">Enrollee Code Already Exist</span>');
+							$('#submit').attr("disabled", true);	
+						}else{
+							$('#enrAvail').html('<span class="text-success">Enrollee Code Available</span>');
+							$('#submit').attr("disabled", false);
+						}
+					}
+				})
+			}
+		});
+validator.on('success.form.bv', function(event){
+    		event.preventDefault();
+    		var formData = $(this).serialize();
+		    $.ajax({
+		        url: 'submitForm.php',
+		        type: 'post',
+		        data: formData,
+		        success: function(result) {
+			        swal("Complete Registration!", "Enrollee Registered Successfully!", "success").then((result) =>{
+				          location.reload();
+				     });
+		        }
+		    });
+
+		});
+
+	});
+
+</script>
+
+</body>
+</html>
